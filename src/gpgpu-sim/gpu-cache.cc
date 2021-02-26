@@ -1031,8 +1031,8 @@ void baseline_cache::cycle() {
 /// Interface for response from lower memory level (model bandwidth restictions
 /// in caller)
 void baseline_cache::fill(mem_fetch *mf, unsigned time) {
-  if (m_config.m_mshr_type == SECTOR_ASSOC) {
-    assert(mf->get_original_mf());
+  if ((m_config.m_mshr_type == SECTOR_ASSOC) && (mf->get_original_mf())) {
+    // assert(mf->get_original_mf());
     extra_mf_fields_lookup::iterator e =
         m_extra_mf_fields.find(mf->get_original_mf());
     assert(e != m_extra_mf_fields.end());
